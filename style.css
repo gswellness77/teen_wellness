@@ -62,46 +62,6 @@ h1 {
 .read-the-docs {
   color: #888;
 }
-/* --- Downloads dropdown --- 
-.nav-item.dropdown { position: relative; display: inline-block; }
-
-.nav-link.dropdown-toggle {
-  background: none; border: 0; padding: 0.5rem 0.75rem; cursor: pointer;
-  font: inherit;
-}
-
-.nav-item .caret { margin-left: 0.25rem; }
-
-.dropdown-menu {
-  display: none;
-  position: absolute; top: 100%; left: 0;
-  min-width: 240px; padding: 0.5rem 0; margin-top: 0.25rem;
-  background: #fff; border: 1px solid rgba(0,0,0,.08);
-  box-shadow: 0 6px 24px rgba(0,0,0,.08); border-radius: 8px;
-  z-index: 1000;
-}
-
-.dropdown-menu li { list-style: none; }
-
-.dropdown-link {
-  display: block; padding: 0.5rem 0.75rem;
-  text-decoration: none; color: #222;
-}
-
-.dropdown-link:hover, .dropdown-link:focus {
-  background: rgba(0,0,0,.04);
-}
-
-// Show on hover (desktop) 
-.nav-item.dropdown:hover > .dropdown-menu { display: block; }
-
-// Basic keyboard focus support 
-.nav-item.dropdown:focus-within > .dropdown-menu { display: block; } */
-
-/* Optional: tighter spacing on small screens */
-@media (max-width: 640px) {
-  .dropdown-menu { position: static; box-shadow: none; border: 0; }
-}
 
 button {
   border-radius: 8px;
