@@ -62,7 +62,7 @@ h1 {
 .read-the-docs {
   color: #888;
 }
-/* --- Downloads dropdown --- */
+/* --- Downloads dropdown --- 
 .nav-item.dropdown { position: relative; display: inline-block; }
 
 .nav-link.dropdown-toggle {
@@ -92,11 +92,11 @@ h1 {
   background: rgba(0,0,0,.04);
 }
 
-/* Show on hover (desktop) */
+// Show on hover (desktop) 
 .nav-item.dropdown:hover > .dropdown-menu { display: block; }
 
-/* Basic keyboard focus support */
-.nav-item.dropdown:focus-within > .dropdown-menu { display: block; }
+// Basic keyboard focus support 
+.nav-item.dropdown:focus-within > .dropdown-menu { display: block; } */
 
 /* Optional: tighter spacing on small screens */
 @media (max-width: 640px) {
