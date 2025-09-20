@@ -1,13 +1,1200 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teen Wellness Hub</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teen Mental Health & Wellness Hub | Girl Scout Silver Award Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --silver-blue: #8BB5C7;
+            --pastel-green: #A8C69F;
+            --light-brown: #C4A484;
+            --dark-silver-blue: #6B8FA8;
+            --dark-pastel-green: #7FA076;
+            --dark-light-brown: #A08568;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --dark-gray: #343A40;
+            --text-primary: #2C3E50;
+            --text-secondary: #5D6D7E;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--white);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--silver-blue), var(--pastel-green));
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--white);
+            color: var(--dark-silver-blue);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark-silver-blue);
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-pastel-green);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--silver-blue), var(--pastel-green), var(--light-brown));
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            margin-top: -80px;
+            padding-top: 10rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--text-primary);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--dark-silver-blue);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Wellness Day Guide */
+        .wellness-guide {
+            background-color: var(--light-gray);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--dark-pastel-green);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 1rem 2rem;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -12px;
+            background-color: var(--dark-pastel-green);
+            border: 4px solid var(--white);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .activity-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--dark-pastel-green);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--pastel-green), var(--light-brown));
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--dark-silver-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-source {
+            font-size: 0.7em;         /* smaller text */
+            font-weight: normal;      /* remove bold */
+            font-family: Arial, sans-serif; /* clean sans-serif font */
+            color: #555;              /* softer gray color */
+            text-decoration: none;    /* remove underline */
+        }
+
+        .stat-source:hover {
+            text-decoration: underline; /* underline on hover */
+            color: #2C3E50;            /* darker hover color */
+        }
+
+        .info-link {
+            font-size: 0.7em;         /* smaller text */
+            font-weight: normal;      /* remove bold */
+            font-family: Arial, sans-serif; /* clean sans-serif font */
+            color: #555;              /* softer gray color */
+            text-decoration: none;    /* remove underline */
+            transition: color 0.3s ease;
+        }
+
+        .info-link:hover {
+            text-decoration: underline; /* underline on hover */
+            color: #2C3E50;            /* darker hover color */
+        }
+
+        .fact-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--silver-blue);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Resources Section */
+        .resources-section {
+            background-color: var(--light-gray);
+        }
+
+        .resource-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .resource-category {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .resource-category h3 {
+            color: var(--dark-silver-blue);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-link {
+            text-decoration: none;
+            color: var(--dark-silver-blue);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: var(--dark-pastel-green);
+        }
+
+        .crisis-hotline {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .crisis-hotline h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .crisis-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(135deg, var(--light-brown), var(--silver-blue));
+            text-align: center;
+        }
+
+        .scout-badge {
+            width: 80px;
+            height: 80px;
+            background: var(--dark-pastel-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        /* Interactive Elements */
+        .expandable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .expandable-content.expanded {
+            max-height: 500px;
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+            float: right;
+            margin-top: 0.5rem;
+        }
+
+        .expand-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--white);
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: visible;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--silver-blue);
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--dark-silver-blue);
+            color: var(--white);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 400px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                padding: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .timeline::after {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 20px;
+            }
+
+            .timeline-item::after {
+                left: 8px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Mental Wellness Hub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#wellness-guide">Wellness Guide</a></li>
+                <li><a href="#facts">Facts & Stats</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="https://docs.google.com/spreadsheets/d/1vnLqC5tNz0FPYImH9DQFlZvCvK9bUOFpdAWnlCNf418/edit?usp=sharing">Wellness Day Template</a></li>
+              <!--  /* <li class="nav-item dropdown">
+                <button class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                    Downloads
+                    <span class="caret" aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                    <a
+                        class="dropdown-link"
+                        href="https://docs.google.com/spreadsheets/d/1vnLqC5tNz0FPYImH9DQFlZvCvK9bUOFpdAWnlCNf418/edit?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        role="menuitem"
+                    >
+                        Wellness Day Task Lists Template
+                    </a>
+                    </li>
+                     Add more download items here later, one <li> per link
+                </ul>
+                </li> -->
+
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <h1>School-Wide Wellness</h1>
+            <p>Empowering schools and communities to support teen mental health through evidence-based wellness initiatives and comprehensive resources.</p>
+            <a href="#wellness-guide" class="cta-button">Start Planning Your Wellness Day</a>
+        </section>
+
+        <section id="wellness-guide" class="wellness-guide fade-in">
+            <h2>School Wellness Day Planning Guide</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">A comprehensive step-by-step guide to organizing impactful mental health wellness days that create lasting positive change in your school community.</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>6-8 Weeks Before: Foundation Planning</h3>
+                        <p>Form planning committee with students, teachers, counselors, and administrators. Set a date and establish a budget. Begin outreach to potential speakers and mental health professionals if you would like to host an assembly and speak about the importance of mental health in school.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>4-6 Weeks Before: Program Development</h3>
+                        <p>Contact teachers/administrators to finalize activity schedule, confirm guest speakers, order materials and supplies. Create promotional materials and begin advertising the event to students through your homepage, posters, daily announcements, etc.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>2-4 Weeks Before: Final Preparations</h3>
+                        <p>Make sure teachers have fully prepared their activity stations and distribute detailed schedules to staff. Send reminder communications and gather final attendance numbers a few days before the event.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Event Day: Implementation</h3>
+                        <p>Execute the wellness day program, monitor activities, gather feedback from participants. Document the event with photos and testimonials for future planning.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>1-2 Weeks After: Follow-up</h3>
+                        <p>Send thank you notes to participants and volunteers. Analyze feedback, create impact report, and plan further events based on lessons learned.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin-top: 4rem;">Recommended Wellness Day Activities</h3>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <h3>🧘‍♀️ Skill-Building & Personal Growth <sup><a href="https://www.youtube.com/watch?v=example1" target="_blank" rel="noopener noreferrer" class="info-link">info</a></sup></h3>
+                    <p>Learning new life skills helps build confidence and gives you tools to handle stress and challenges more effectively.</p>
+                    <ul>
+                        <li>Goal-setting vision boards</li>
+                        <li>Time-management workshops</li>
+                        <li>"Dear Future Me" letters</li>
+                    </ul>
+                </div>
+                <div class="activity-card">
+                    <h3>🎨 Art Therapy <sup><a href="https://www.example.com/art-therapy-benefits" target="_blank" rel="noopener noreferrer" class="info-link">info</a></sup></h3>
+                    <p>Art therapy that provides healthy outlets for emotions and stress relief.</p>
+                    <ul>
+                        <li>Watercoloring</li>
+                        <li>Sculptures/clay art</li>
+                        <li>Guided drawings</li>
+                    </ul>
+                </div>
+                <div class="activity-card">
+                    <h3>📚 Mental Health Education <sup><a href="https://www.youtube.com/watch?v=example2" target="_blank" rel="noopener noreferrer" class="info-link">info</a></sup></h3>
+                    <p>Interactive workshops covering topics like recognizing mental health warning signs, coping strategies, and when to seek help.</p>
+                    <ul>
+                        <li>Panel discussions with professionals</li>
+                        <li>Peer support training</li>
+                        <li>Resource fair and information booths</li>
+                    </ul>
+                </div>
+                <div class="activity-card">
+                    <h3>🤝 Connection & Community <sup><a href="https://www.example.com/community-building" target="_blank" rel="noopener noreferrer" class="info-link">info</a></sup></h3>
+                    <p>Spending time with others in positive, supportive environment and activities that encourage teamwork helps reduce feelings of isolation and boosts happiness.</p>
+                    <ul>
+                        <li>Team-building games</li>
+                        <li>Collaborative art projects </li>
+                        <li>Group storytelling or improv</li>
+                    </ul>
+                </div>
+                <div class="activity-card">
+                    <h3>🏃‍♂️ Sports <sup><a href="https://www.youtube.com/watch?v=example3" target="_blank" rel="noopener noreferrer" class="info-link">info</a></sup></h3>
+                    <p>Movement activities and exercise demonstrations showing the connection between physical activity and mental health.</p>
+                    <ul>
+                        <li>Basketball</li>
+                        <li>Dance workshops</li>
+                        <li>Nature walks</li>
+                    </ul>
+                </div>
+                <div class="activity-card">
+                    <h3>🎭 Interactive Workshops <sup><a href="https://www.example.com/interactive-wellness" target="_blank" rel="noopener noreferrer" class="info-link">info</a></sup></h3>
+                    <p>Fun, hands-on, engaging activities that teach creative ways to relax, de-stress, and boost your mental wellness.</p>
+                    <ul>
+                        <li>Making slime</li>
+                        <li>Making DIY stress balls</li>
+                        <li>Making friendship bracelets</li>
+                    </ul>
+                </div>
+            </div>
+             <div style="background: var(--white); padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                <h3>A Day at a Glance</h3>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Schedule Option - 1 <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>(Minimum Day)</strong>
+                            <li><strong>8:15-9:00 AM </strong> (Report to first period class for attendance and wellness assembly) </li>
+<li><strong>9:00-9:05 </strong> (Passing period to first wellness day session) </li>
+<li><strong>9:05-9:50 </strong>(First wellness day session) </li>
+<li><strong>9:00-10:05 </strong> (Break before 2nd session) </li>
+<li><strong>10:05-10:10 </strong> (Passing period to 2nd session) </li>
+<li><strong>10:10-10:55 </strong>(2nd wellness day session) </li>
+<li><strong>10:55-11:00 </strong>(passing period to 3rd wellness day Session) </li>
+<li><strong>11:00-11:45 </strong>(3rd wellness days session) </li>
+<li><strong>11:45</strong> (Dismissal) </li>
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Schedule Option - 2 <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>(Minimum Day)</strong><li><strong>8:15-9:03</strong> (Advisory) 
+<li><strong>9:03-9:07</strong> (Passing period to first wellness day session)
+<li><strong>9:07-9:52</strong> (First wellness day session) 
+<li><strong>9:52-10:52</strong> (Break) 
+<li><strong>10:02-10:06</strong> (Passing period to second wellness day session) 
+<li><strong>10:06-10:51</strong> (Second wellness day session)
+<li><strong>10:51-10:55</strong> (Passing period to final wellness day session) 
+<li><strong>10:55-11:40</strong> (Final wellness day session) 
+</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Schedule Option - 3 <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>(Full Day)</strong><li><strong>8:15-9:00 (Report to 1st period for attendance and introduction slideshow) 
+<li><strong>9:00-9:45</strong> (assembly on topic chosen by the school) 
+<li><strong>9:45-10:00</strong> (Passing Period) 
+<li><strong>10:00-10:50</strong> (1st session) 
+<li><strong>10:50-11:10</strong> (Break)
+<li><strong>11:10-11:15</strong> (Passing Period) 
+<li><strong>11:15-12:05</strong> (2nd session) 
+<li><strong>12:05-12:35</strong> (Lunch) 
+<li><strong>12:35-12:40</strong> (Passing Period 
+<li><strong>12:40-1:30</strong> (3rd session) 
+<li><strong>1:30-1:35</strong> (Passing Period)
+<li><strong>1:35-2:25</strong> (Report back to 1st period classroom for wellness day survey and evaluation)
+<li><strong>2:25-3:00</strong> (Closing remarks, raffle, thank you’s in gym)
+</p>
+                    </div>
+            </div>
+
+            <div style="background: var(--white); padding: 2rem; border-radius: 15px; margin-top: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3>💡 Implementation Tips for Success</h3>
+                <ul style="margin-left: 2rem; color: var(--text-secondary);">
+                    <li><strong>Start Small:</strong> Begin with a half-day event and expand based on feedback and resources</li>
+                    <li><strong>Involve Students:</strong> Include student voices in planning to ensure engagement and leadership once you've left</li>
+                    <li><strong>Choose the Right Time:</strong> After exams season, avoiding busy school weeks to ensure better participation</li>
+                    <li><strong>Create Safe Spaces:</strong> Establish clear guidelines for safety and respectful communication</li>
+                    <li><strong>Follow Up:</strong> Create student feedback forms and implement their results, create mental health resources beyond the event</li>
+                    <li><strong>Use Sign-ups:</strong> For limited space workshops, online or on-paper sign up sheets really help with organization</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="facts" class="stats-section fade-in">
+            <h2>Mental Health Facts & Statistics</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Understanding the scope of teen mental health challenges helps us create more effective support systems and interventions.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">1 in 5</div>
+                    <div class="stat-description">teens experience a mental health disorder in any given year
+                        <sup><a href="https://mchb.hrsa.gov/sites/default/files/mchb/data-research/nsch-data-brief-adolescent-mental-behavioral-health-2023.pdf" target="_blank" rel="noopener noreferrer" class="stat-source">source</a></sup>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-description">of SRVUSD teens report that a wellness day could help de-stress them and their peers
+                        <sup><a href="https://docs.google.com/forms/d/1GMfwhBKVo8ffiuJips3TNT_xe5gDa4-uJr9InCUgXIE/edit#responses" target="_blank" rel="noopener noreferrer" class="stat-source">source</a></sup>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">60%</div>
+                    <div class="stat-description">of SRVUSD students report feeling overwhelmed by school stress
+                        <sup><a href="https://docs.google.com/forms/d/1GMfwhBKVo8ffiuJips3TNT_xe5gDa4-uJr9InCUgXIE/edit#responses" target="_blank" rel="noopener noreferrer" class="stat-source">source</a></sup>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-description">of high school students report persistent feelings of sadness or hopelessness
+                        <sup><a href="https://www.ccga.edu/reg-murphy-publications/teen-mental-health-remains-poor/#:~:text=40%25%20of%20high%20school%20students,to%20only%206%25%20of%20boys" target="_blank" rel="noopener noreferrer" class="stat-source">source</a></sup>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin-top: 4rem; color: var(--white);">Key Research Findings</h3>
+            
+            <div class="fact-card">
+                <h3>📈 Rising Trends in Teen Mental Health</h3>
+                <p>According to the American Pyschological Association, nearly half of all teens face school-related pressure and stress. Because of this, teens are finding unhealthy coping mechanisms to deal with their stress.</p>
+                     <sup><a href="https://www.apa.org/news/press/releases/2014/02/teen-stress" target="_blank" rel="noopener noreferrer" class="stat-source">source</a></sup>
+            </div>
+
+            <div class="fact-card">
+                <h3>🏫 School Environment Impact</h3>
+                <p>A positive school climate--characterized by supportive teacher-student/peer relationships, percieved safety, and clear reporting paths-- is signficantly linked to lower levels of depression, anxiety, impulsivity, hostility and other internalizing symptoms among students.</p>
+                    <sup><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8965219/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="stat-source">source</a></sup>
+            </div>
+
+            <div class="fact-card">
+                <h3>🤝 Power of Peer Support</h3>
+                <p>Peer support programs in schools have been shown to improve mental health-related quality of life, increase engagement with support services, and reduce hospitalization and inpatient days for individuals with mental health conditions.</p>
+                    <sup><a href="https://mhanational.org/peer-support-research-and-reports/" target="_blank" rel="noopener noreferrer" class="stat-source">source</a></sup>
+            </div>
+
+            <div class="fact-card">
+                <h3>💪 Building Resilience</h3>
+                <p>Cultivating positive emotions--such as optimism, humor, reappraisal, and gratitude--enhances creative problem-solving, speeds recovery from stress, and supports overall pyschological adaptability.</p>
+                    <sup><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3746114/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="stat-source">source</a></sup>
+            </div>
+
+            <!--<div style="background: var(--white); padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                <h3>A Day at a Glance</h3>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        1st schedule option <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>(Minimum Day)</strong>
+                            <li><strong>8:15-9:00 AM </strong> (Report to first period class for attendance and wellness assembly) </li>
+<li><strong>9:00-9:05 </strong> (Passing period to first wellness day session) </li>
+<li><strong>9:05-9:50 </strong>(First wellness day session) </li>
+<li><strong>9:00-10:05 </strong> (Break before 2nd session) </li>
+<li><strong>10:05-10:10 </strong> (Passing period to 2nd session) </li>
+<li><strong>10:10-10:55 </strong>(2nd wellness day session) </li>
+<li><strong>10:55-11:00 </strong>(passing period to 3rd wellness day Session) </li>
+<li><strong>11:00-11:45 </strong>(3rd wellness days session) </li>
+<li><strong>11:45</strong> (Dismissal) </li>
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        2nd Schedule Option <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>(Minimum Day)</strong><li><strong>8:15-9:03</strong> (Advisory) 
+<li><strong>9:03-9:07</strong> (Passing period to first wellness day session)
+<li><strong>9:07-9:52</strong> (First wellness day session) 
+<li><strong>9:52-10:52</strong> (Break) 
+<li><strong>10:02-10:06</strong> (Passing period to second wellness day session) 
+<li><strong>10:06-10:51</strong> (Second wellness day session)
+<li><strong>10:51-10:55</strong> (Passing period to final wellness day session) 
+<li><strong>10:55-11:40</strong> (Final wellness day session) 
+</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        3rd Schedule Option <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>(Full Day)</strong><li><strong>8:15-9:00 (Report to 1st period for attendance and introduction slideshow) 
+<li><strong>9:00-9:45</strong> (assembly on topic chosen by the school) 
+<li><strong>9:45-10:00</strong> (Passing Period) 
+<li><strong>10:00-10:50</strong> (1st session) 
+<li><strong>10:50-11:10</strong> (Break)
+<li><strong>11:10-11:15</strong> (Passing Period) 
+<li><strong>11:15-12:05</strong> (2nd session) 
+<li><strong>12:05-12:35</strong> (Lunch) 
+<li><strong>12:35-12:40</strong> (Passing Period 
+<li><strong>12:40-1:30</strong> (3rd session) 
+<li><strong>1:30-1:35</strong> (Passing Period)
+<li><strong>1:35-2:25</strong> (Report back to 1st period classroom for wellness day survey and evaluation)
+<li><strong>2:25-3:00</strong> (Closing remarks, raffle, thank you’s in gym)
+</p>
+                    </div>-->
+                </div>
+                <!--<div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Future Uncertainty <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>College decisions, career planning, and societal pressures about success create anxiety about the future. 68% of teens report feeling unprepared for adulthood.</p>
+                    </div>
+                </div>-->
+            </div>
+        </section>
+
+        <section id="resources" class="resources-section fade-in">
+            <h2>Mental Health Resources for Teens</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem;">Comprehensive support resources including crisis hotlines, apps, websites, and local support options to help teens access the mental health support they need.</p>
+
+            <div class="crisis-hotline">
+                <h3>🆘 Crisis Support - Available 24/7</h3>
+                <div class="crisis-number">988</div>
+                <p><strong>Suicide & Crisis Lifeline</strong><br>
+                Free, confidential support for anyone in distress</p>
+                <p><strong>Crisis Text Line:</strong> Text HOME to 741741</p>
+            </div>
+
+            <div class="resource-categories">
+                <div class="resource-category">
+                    <h3>📱 Mental Health Apps</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://play.google.com/store/apps/details?id=com.getsomeheadspace.android&hl=en&pli=1" target="_blank" rel="noopener noreferrer">Headspace</a> - Guided meditation and mindfulness</li>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.calm.android&hl=en-US" target="_blank" rel="noopener noreferrer">Calm</a> - Sleep stories, meditation, relaxation</li>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.mypossibleself.app" target="_blank" rel="noopener noreferrer">MyPossibleSelf</a> - Manage anxiety, stress, and low mood</li>
+                        <li><a href="https://apps.apple.com/us/app/mindshift-cbt-anxiety-relief/id634684825" target="_blank" rel="noopener noreferrer">MindShift</a> - CBT-based anxiety management</li>
+                        <li><a href="https://play.google.com/store/apps/details?id=br.com.youper&hl=en-US" target="_blank" rel="noopener noreferrer">Youper</a> - AI-powered emotional health assistant</li>
+                        <li><a href="https://apps.apple.com/us/app/ptsd-coach/id430646302" target="_blank" rel="noopener noreferrer">PTSD Coach</a> - Self-care and symptom management</li>
+                    </ul>
+                </div>
+
+                <div class="resource-category">
+                    <h3>🌐 Helpful Websites</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://mentalhealthliteracy.org/" target="_blank" rel="noopener noreferrer">
+            Mental Health Literacy
+        </a> - Comprehensive youth mental health information</li>
+                        <li><a href="https://www.nami.org/" target="_blank" rel="noopener noreferrer">NAMI.org</a> - National Alliance on Mental Illness resources</li>
+                        <li><a href="https://www.jedcampus.org/" target="_blank" rel="noopener noreferrer">JED Campus</a> - College mental health advocacy</li>
+                        <li><a href="https://mhanational.org/" target="_blank" rel="noopener noreferrer">Mental Health America</a> - Screening tools and resources</li>
+                        <li><a href="https://www.crisistextline.org/" target="_blank" rel="noopener noreferrer">Crisis Text Line</a> - 24/7 text-based crisis support</li>
+                        <li><a href="https://www.samhsa.gov/" target="_blank" rel="noopener noreferrer">SAMHSA</a> - Treatment locator and resources</li>
+                    </ul>
+                </div>
+
+                <div class="resource-category">
+                    <h3>📞 Support Hotlines</h3>
+                    <ul class="resource-list">
+                        <li><strong>988 Suicide & Crisis Lifeline:</strong> 988</li>
+                        <li><strong>Crisis Text Line:</strong> Text HOME to 741741</li>
+                        <li><strong>SAMHSA Helpline:</strong> 1-800-487-4889</li>
+                        <li><strong>Teen Line:</strong> 1-800-852-8336</li>
+                        <li><strong>NAMI Helpline:</strong> 1-800-950-6264</li>
+                        <li><strong>Trevor Project (LGBTQ+):</strong> 1-866-488-7386</li>
+                    </ul>
+                </div>
+
+                <div class="resource-category">
+                    <h3>🏥 Professional Support</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://www.psychologytoday.com/us?msockid=04265a97ceee6b1d06b04e4fcf846a52" target="_blank" rel="noopener noreferrer">Psychology Today</a> - Find local therapists and counselors</li>
+                        <li><a href="https://www.samhsa.gov/find-help/locators" target="_blank" rel="noopener noreferrer">SAMHSA Treatment Locator</a> - Find treatment facilities</li>
+                        <li><a href="https://openpathcollective.org/" target="_blank" rel="noopener noreferrer">Open Path Therapy</a> - Affordable therapy options</li>
+                        <li><a href="https://www.betterhelp.com/" target="_blank" rel="noopener noreferrer">BetterHelp</a> - Online therapy platform</li>
+                        <li><a href="https://www.talkspace.com/?irclickid=R7mVPj01IxycRi4TS1wANSRNUkp2ymRlRS3UzI0&irgwc=1&utm_medium=affiliate&utm_campaign=Affiliate_Impact&utm_source=Bing%20Rebates%20by%20Microsoft&utm_keyword=BANNER&utm_term=2003851&utm_content=Wordmark&utr_adid=2021789&utr_adgroup=2003851" target="_blank" rel="noopener noreferrer">Talkspace</a> - Text-based therapy services</li>
+                        <li><strong>School Counselors</strong> - Contact your school guidance office</li>
+                    </ul>
+                </div>
+
+                <div class="resource-category">
+                    <h3>📚 Educational Resources</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://www.mentalhealthfirstaid.org/" target="_blank" rel="noopener noreferrer">Mental Health First Aid</a> - Training and certification</li>
+                        <li><a href="https://www.nami.org/Support-Education/Mental-Health-Education/NAMI-Ending-the-Silence/" target="_blank" rel="noopener noreferrer">NAMI Ending the Silence</a> - School presentations</li>
+                        <li><a href="https://jedfoundation.org/kent-state-case-study/" target="_blank" rel="noopener noreferrer">JED Campus</a> - College mental health programs</li>
+                        <li><a href="https://activeminds.org/" target="_blank" rel="noopener noreferrer">Active Minds</a> - Student mental health advocacy</li>
+                        <li><a href="https://bornthisway.foundation/" target="_blank" rel="noopener noreferrer">Born This Way Foundation</a> - Kindness and mental wellness</li>
+                        <li><a href="https://www.thensf.org/" target="_blank" rel="noopener noreferrer">National Sleep Foundation</a> - Sleep and mental health</li>
+                    </ul>
+                </div>
+
+                <div class="resource-category">
+                    <h3>👥 Support Groups & Communities</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://www.nami.org/Support-Education/Support-Groups/" target="_blank" rel="noopener noreferrer">NAMI Support Groups</a> - Local in-person groups</li>
+                        <li><a href="https://www.7cups.com/" target="_blank" rel="noopener noreferrer">7 Cups</a> - Online emotional support community</li>
+                        <li><a href="https://mhanational.org/treatment-options/support-group/" target="_blank" rel="noopener noreferrer">Mental Health America Groups</a> - Peer support networks</li>
+                        <li><a href="https://www.heypeers.com/" target="_blank" rel="noopener noreferrer">Support Groups Central</a> - Find local groups</li>
+                        <li><a href="https://smartrecovery.org/" target="_blank" rel="noopener noreferrer">SMART Recovery</a> - Self-management and recovery</li>
+                        <li><strong>School Clubs:</strong> Start or join mental health awareness clubs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: var(--white); padding: 2rem; border-radius: 15px; margin-top: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3>🔍 How to Find Help</h3>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How do I know if I need professional help? <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Consider seeking help if you experience persistent sadness, anxiety, changes in sleep or appetite, difficulty concentrating, thoughts of self-harm, or if daily activities become challenging for more than two weeks.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What should I expect from therapy? <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Therapy provides a safe, confidential space to discuss your thoughts and feelings. Your therapist will work with you to develop coping strategies, understand patterns, and work toward your goals at your own pace.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How can I support a friend who is struggling? <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Listen without judgment, encourage them to seek professional help, offer to accompany them to appointments, check in regularly, and take care of your own mental health too. Know the warning signs and when to seek immediate help.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section fade-in">
+            <div class="scout-badge">🏅</div>
+            <h2 style="color: var(--text-primary);">About This Project</h2>
+            <p style="color: var(--text-primary); max-width: 800px; margin: 0 auto 2rem;">This Teen Mental Health & Wellness Hub was created as part of a Girl Scout Silver Award project to address the growing mental health crisis among teenagers. Our mission is to provide schools and communities with practical tools and resources to support teen mental wellness.</p>
+            
+            <div style="background: var(--white); padding: 2rem; border-radius: 15px; margin: 2rem auto; max-width: 600px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3>Project Goals</h3>
+                <ul style="text-align: left; margin-left: 2rem; color: var(--text-secondary);">
+                    <li>Increase awareness of teen mental health challenges</li>
+                    <li>Provide practical tools for organizing wellness events</li>
+                    <li>Connect teens with appropriate mental health resources</li>
+                    <li>Reduce stigma around seeking mental health support</li>
+                    <li>Empower schools to create supportive environments</li>
+                </ul>
+            </div>
+
+            <div style="background: var(--white); padding: 2rem; border-radius: 15px; margin: 2rem auto; max-width: 600px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <h3>Research & Development</h3>
+                <p style="color: var(--text-secondary);">This project involved extensive research into teen mental health statistics, evidence-based intervention strategies, and consultation with mental health professionals, school counselors, and peer advocates to ensure accuracy and effectiveness.</p>
+            </div>
+
+            <p style="color: var(--text-primary); font-size: 1.3rem; font-weight: bold; margin-top: 3rem;">
+                Made with ❤️ by Girl Scout Troop #31083
+            </p>
+            <p style="color: var(--text-primary);">Dedicated to creating positive change in teen mental health support and advocacy.</p>
+        </section>
+    </main>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        });
+
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.expand-icon');
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('rotated');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Dynamic statistics counter animation
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalValue = stat.textContent;
+                if (!isNaN(parseFloat(finalValue))) {
+                    let currentValue = 0;
+                    const increment = parseFloat(finalValue) / 50;
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= parseFloat(finalValue)) {
+                            stat.textContent = finalValue;
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(currentValue) + (finalValue.includes('%') ? '%' : '');
+                        }
+                    }, 50);
+                }
+            });
+        }
+
+        // Trigger stats animation when stats section is visible
+        const statsSection = document.querySelector('.stats-section');
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Add hover effects to activity cards
+        document.querySelectorAll('.activity-card, .resource-category').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add interactive timeline functionality
+        document.querySelectorAll('.timeline-content').forEach(content => {
+            content.addEventListener('click', function() {
+                this.style.transform = this.style.transform === 'scale(1.05)' ? 'scale(1)' : 'scale(1.05)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // Resource link click tracking (for analytics - placeholder)
+        document.querySelectorAll('.resource-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // In a real implementation, this would track clicks for analytics
+                console.log('Resource clicked:', this.textContent);
+                // You could redirect to actual URLs here
+                alert('This would redirect to: ' + this.textContent);
+            });
+        });
+
+        // Add loading states for better UX
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+        });
+
+        // Keyboard navigation for accessibility
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-navigation');
+        });
+
+        // Add progress indicator for reading
+        window.addEventListener('scroll', function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            // Create progress bar if it doesn't exist
+            let progressBar = document.getElementById('reading-progress');
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.id = 'reading-progress';
+                progressBar.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: ${scrolled}%;
+                    height: 3px;
+                    background: linear-gradient(90deg, var(--silver-blue), var(--pastel-green));
+                    z-index: 9999;
+                    transition: width 0.3s ease;
+                `;
+                document.body.appendChild(progressBar);
+            } else {
+                progressBar.style.width = scrolled + '%';
+            }
+        });
+    </script>
+</body>
 </html>
